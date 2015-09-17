@@ -4,11 +4,21 @@
     <title></title>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
     <p>Text above animation</p>
     <input type="button" class="btn" value="Animate" />
-    <p id="animate">Text to animate.</p>
+    <div id="animate">
+        <p>Text to animate.</p>
+        <div id="box"></div>
+    </div>
     <p>Text below animation</p>
 
     <script>
