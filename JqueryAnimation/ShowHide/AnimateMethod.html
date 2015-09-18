@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <p>Here's some text</p>
+    <!--<img id="img1" src="../Content/images/logo-v2.png" />-->
+    <!--<img id="img2" src="../Content/images/logo-v2.png" />-->
+
+    <img id="img" src="../Content/images/logo-v2.png" />
+
+    <script>
+        //$('img').animate({ left: '300px', top: '300px', opacity: '0' }, 3000);
+
+        //$('p').animate({fontSize: '88px'}, 2000
+
+        //$('#img1').animate({ left: '300px' }, 2000, 'swing', function(){
+        //    $('body').append('We are done!')});
+        //$('#img2').animate({ left: '300px' }, 2000, 'linear');
+
+        $('#img').animate({
+            left: '300px',
+            top: '300px'
+        },
+        {
+            duration: 2000,
+            specialEasing: {
+                left: 'linear',
+                top: 'swing'
+            }
+        });
+    </script>
+</body>
+</html>

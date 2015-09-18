@@ -69,6 +69,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\logo-v2.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -79,7 +82,12 @@
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="ShowHide\AnimateMethod.html" />
+    <Content Include="ShowHide\AnimateOptionProgress.html" />
+    <Content Include="ShowHide\AnimationOptions.html" />
+    <Content Include="ShowHide\ChainingAnimation.html" />
     <Content Include="ShowHide\HtmlPage1.html" />
+    <Content Include="ShowHide\SlideMethods.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
   </ItemGroup>
