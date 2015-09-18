@@ -83,6 +83,8 @@
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="ShowHide\AnimateMethod.html" />
+    <Content Include="ShowHide\AnimateOptionProgress.html" />
+    <Content Include="ShowHide\AnimationOptions.html" />
     <Content Include="ShowHide\HtmlPage1.html" />
     <Content Include="ShowHide\SlideMethods.html" />
     <Content Include="Web.config" />

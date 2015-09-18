@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <p></p>
+    <img id="img" src="../Content/images/logo-v2.png" />
+
+    <script>
+        $('#img').animate({
+            left: '300px'
+        },
+        {
+            duration: 5000,
+            progress: function (animation, progress, remainingMs) {
+                $('p').text(progress);
+            }
+        });
+    </script>
+</body>
+</html>
