@@ -29,7 +29,8 @@
             .animate({ left: '-=200' }, 2000);
 
         $('#stopButton').click(function () {
-            $('img').stop();
+            //$('img').stop(true, true);
+            $('img').finish();
         })
     </script>
 
