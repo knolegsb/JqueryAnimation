@@ -21,7 +21,8 @@
 
         //$('p').animate({fontSize: '88px'}, 2000
 
-        $('#img1').animate({ left: '300px' }, 2000, 'swing');
+        $('#img1').animate({ left: '300px' }, 2000, 'swing', function(){
+            $('body').append('We are done!')});
         $('#img2').animate({ left: '300px' }, 2000, 'linear');
     </script>
 </body>
