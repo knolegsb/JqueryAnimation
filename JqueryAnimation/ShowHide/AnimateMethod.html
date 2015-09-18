@@ -13,12 +13,16 @@
 </head>
 <body>
     <p>Here's some text</p>
-    <img src="../Content/images/logo-v2.png" />
+    <img id="img1" src="../Content/images/logo-v2.png" />
+    <img id="img2" src="../Content/images/logo-v2.png" />
 
     <script>
-        $('img').animate({ left: '300px', top: '300px', opacity: '0' }, 3000);
+        //$('img').animate({ left: '300px', top: '300px', opacity: '0' }, 3000);
 
-        $('p').animate({fontSize: '88px'}, 2000)
+        //$('p').animate({fontSize: '88px'}, 2000
+
+        $('#img1').animate({ left: '300px' }, 2000, 'swing');
+        $('#img2').animate({ left: '300px' }, 2000, 'linear');
     </script>
 </body>
 </html>
