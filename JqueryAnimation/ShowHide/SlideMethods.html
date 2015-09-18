@@ -10,11 +10,6 @@
             height: 200px;
             background-color: red;
         }
-        #animate{
-            position: absolute;
-            left: 200px;
-            top: 200px;
-        }
     </style>
 </head>
 <body>
@@ -28,17 +23,9 @@
 
     <script>
         $('input').click(function () {
-            //var a = $('#animate');
-            //if (a.is(':hidden'))
-            //    a.show(3000);
-            //else
-            //    a.hide('slow');
-
-            //$('#animate').toggle(3000);
-
-            //$('#animate').fadeToggle('fast');
-            $('#animate').fadeTo('slow', 0.5);
+            $('#animate').toggle('slow');
         })
     </script>
 </body>
 </html>
+0
