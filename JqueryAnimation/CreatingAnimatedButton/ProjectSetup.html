@@ -4,8 +4,16 @@
     <title></title>
     <script src="../Scripts/jquery-2.1.4.min.js"></script>
     <script src="../Scripts/jquery.easing.1.3.js"></script>
+    <link href="ProjectSetup.css" rel="stylesheet" />
+    <script src="ProjectSetup.js"></script>
 </head>
 <body>
+    <div id="btn"><span>BUY NOW!</span></div>
 
+    <script>
+        $(function () {
+            var b = new PS.BuyNowButton('btn');
+        });
+    </script>
 </body>
 </html>
