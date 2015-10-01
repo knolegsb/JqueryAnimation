@@ -6,6 +6,8 @@
         var xPos = 50;
         var yPos = 50;
         var gWidth = gallery.width();
+        var hoverWait = false;
+        var showingLargeImage = false;
 
         images.each(function (idx, el) {
             var img = $(el);
@@ -25,13 +27,15 @@
 
             img.hover(
                 function (event) {
+                    if (showingLargeImage) return;
                     hoverWait = false;
                     var target = $(event.target);
-                    brignImageToTop(target);
+                    bringImageToTop(target);
                     avoidImage(target);
                     animateImage(target, 500, target.data('homeX'), target.data('homeY'), 2);
                 },
                 function (event) {
+                    if (showingLargeImage) return;
                     hoverWait = true;
                     setTimeout(function () {
                         if (hoverWait)
@@ -41,9 +45,22 @@
                    // returnAllToNormal();
                 }
             );
+
+            img.click(function () {
+                if (!showingLargeImage) {
+                    showingLargeImage = true;
+                    var target = $(event.target);
+                    bringImageToTop(target);
+                    animateImage(img, 500, 200, 250, 7);
+                } else {
+                    animateImage(img, 500, img.data('homeX'), img.data('homeY'), 1);
+                    returnAllToNormal();
+                    showingLargeImage = false;
+                };
+            });
         });
 
-        var brignImageToTop = function (img) {
+        var bringImageToTop = function (img) {
             images.each(function (idx, el) {
                 $(el).css('z-index', 0);
             });
