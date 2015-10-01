@@ -41,5 +41,23 @@
                     }
                 });
             });
+
+        b.click(function () {
+            b.unbind('mouseenter mouseleave click');
+
+            b.find('span').fadeOut(500);
+
+            b.find('i').animate({ left: '235' }, 2000, 'easeOutBounce');
+
+            $({ tilt: 0 }).animate({ tilt: 20 },
+                {
+                    duration: 1000,
+                    step: function (tilt) {
+                        b.css('transform', 'rotate(' + tilt + 'deg)');
+                    }
+                });
+        });
+
+        
     }
 }(window.PS = window.PS || {}));
