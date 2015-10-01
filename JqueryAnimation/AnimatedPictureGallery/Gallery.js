@@ -26,6 +26,7 @@
             img.hover(
                 function (event) {
                     var target = $(event.target);
+                    brignImageToTop(target);
                     animateImage(target, 500, target.data('homeX'), target.data('homeY'), 2);
                 },
                 function (event) {
@@ -33,6 +34,13 @@
                 }
             );
         });
+
+        var brignImageToTop = function (img) {
+            images.each(function (idx, el) {
+                $(el).css('z-index', 0);
+            });
+            img.css('z-index', 1);
+        }
 
         var returnAllToNormal = function () {
             images.each(function (idx, el) {
