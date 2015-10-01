@@ -25,12 +25,20 @@
 
             img.hover(
                 function (event) {
+                    hoverWait = false;
                     var target = $(event.target);
                     brignImageToTop(target);
+                    avoidImage(target);
                     animateImage(target, 500, target.data('homeX'), target.data('homeY'), 2);
                 },
                 function (event) {
-                    returnAllToNormal();
+                    hoverWait = true;
+                    setTimeout(function () {
+                        if (hoverWait)
+                            returnAllToNormal();
+                    }, 200);
+
+                   // returnAllToNormal();
                 }
             );
         });
@@ -40,6 +48,26 @@
                 $(el).css('z-index', 0);
             });
             img.css('z-index', 1);
+        }
+
+        var avoidImage = function (target) {
+            images.each(function (idx, el) {
+                var img = $(el);
+                if (img[0] != target[0]){
+                    var xdiff = img.data('homeX') - target.data('homeX');
+                    var ydiff = img.data('homeY') - target.data('homeY');
+
+                    var adj = 40;
+                    var xAdjust = (xdiff > 0) ? adj : (xdiff < 0) ? -adj : 0;
+                    var yAdjust = (ydiff > 0) ? adj : (ydiff < 0) ? -adj : 0;
+                    if (yAdjust != 0) xAdjust = 0;
+
+                    var newX = img.data('homeX') + xAdjust;
+                    var newY = img.data('homeY') + yAdjust;
+
+                    animateImage(img, 500, newX, newY, 1);
+                }
+            });
         }
 
         var returnAllToNormal = function () {
