@@ -1,7 +1,8 @@
 ﻿(function (ns) {
-    ns.BuyNowButton = function (id) {
+    ns.BuyNowButton = function (id, cb) {
 
         var b = $("#" + id);
+        var callback = cb;
 
         setInterval(function () {
             $({ xval: -30 }).animate({ xval: 300 },
@@ -54,10 +55,13 @@
                     duration: 1000,
                     step: function (tilt) {
                         b.css('transform', 'rotate(' + tilt + 'deg)');
+                    },
+                    complete: function(){
+                        b.fadeOut(1000, function(){
+                            callback();
+                        });
                     }
                 });
-        });
-
-        
+        });        
     }
 }(window.PS = window.PS || {}));

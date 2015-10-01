@@ -14,7 +14,9 @@
 
     <script>
         $(function () {
-            var b = new PS.BuyNowButton('btn');
+            var b = new PS.BuyNowButton('btn', function(){
+                alert('button clicked!');
+            });
         });
     </script>
 </body>
