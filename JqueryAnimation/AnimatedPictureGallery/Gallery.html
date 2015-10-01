@@ -11,13 +11,20 @@
     <div id="gallery"></div>
     <script>
         $(function () {
+            var loadCount = 0;
+
             for (var i = 1; i <= 12; i++) {
                 var name = i + '.png';
                 if (i < 10) name = '0' + name;
                 var img = $('<img class="galleryImage" src="./Images/' + name + '" />');
                 $('#gallery').append(img);
+
+                img.load(function () {
+                    if (++loadCount == 12)
+                        var g = new PS.Gallery('gallery');
+                });
             }
-            var g = new PS.Gallery('gallery');
+            //var g = new PS.Gallery('gallery');
         });
 
         

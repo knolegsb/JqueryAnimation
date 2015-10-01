@@ -60,7 +60,7 @@
                                 {
                                     duration: 1000,
                                     step: function (now) {
-                                        target.css('transform', 'rotateY(' + (90 * now - 90) + 'deg)');
+                                        //target.css('transform', 'rotateY(' + (90 * now - 90) + 'deg)');
                                     }
                                 });
                         }
