@@ -52,10 +52,43 @@
                     var target = $(event.target);
                     bringImageToTop(target);
                     animateImage(img, 500, 200, 250, 7);
+
+                    images.each(function (idx, el) {
+                        var target = $(el);
+                        if (img[0] != target[0]) {
+                            target.animate({ 'opacity': 0 },
+                                {
+                                    duration: 1000,
+                                    step: function (now) {
+                                        target.css('transform', 'rotateY(' + (90 * now - 90) + 'deg)');
+                                    }
+                                });
+                        }
+                    });
+
                 } else {
                     animateImage(img, 500, img.data('homeX'), img.data('homeY'), 1);
-                    returnAllToNormal();
-                    showingLargeImage = false;
+
+                    images.each(function (idx, el) {
+                        var target = $(el);
+                        if (img[0] != target[0]) {
+                            target.animate({ 'opacity': 1 },
+                                {
+                                    duration: 500,
+                                    step: function (now) {
+                                        target.css('transform', 'rotateY(' + (90 * now - 90) + 'deg)');
+                                    },
+                                    complete: function () {
+                                        if (showingLargeImage) {
+                                            showingLargeImage = false;
+                                            returnAllToNormal();
+                                        }
+                                    }
+                                });
+                        }
+                    });
+                    //returnAllToNormal();
+                    //showingLargeImage = false;
                 };
             });
         });
