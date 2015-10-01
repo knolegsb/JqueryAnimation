@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="GalleryStyle.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script src="../Scripts/jquery.easing.1.3.js"></script>
+    <script src="Gallery.js"></script>
+</head>
+<body>
+    <div id="gallery"></div>
+    <script>
+        $(function () {
+            var loadCount = 0;
+
+            for (var i = 1; i <= 12; i++) {
+                var name = i + '.png';
+                if (i < 10) name = '0' + name;
+                var img = $('<img class="galleryImage" src="./Images/' + name + '" />');
+                $('#gallery').append(img);
+
+                img.load(function () {
+                    if (++loadCount == 12)
+                        var g = new PS.Gallery('gallery');
+                });
+            }
+            //var g = new PS.Gallery('gallery');
+        });
+
+        
+    </script>
+</body>
+</html>
