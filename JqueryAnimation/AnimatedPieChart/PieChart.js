@@ -7,6 +7,7 @@
         var centerY = 150;
         var radius = 100;
         var currentRotationAngle = 0;
+        var targetAngle;
 
         var createSlices = function (data) {
             slices = [];
@@ -37,6 +38,28 @@
                 context.stroke();
 
                 startAngle = startAngle + (slice.pct / 100) * Math.PI * 2;
+            }
+        };
+
+        var setState = function (newState) {
+            animationState = newState;
+            switch (animationState) {
+                case 'StateIdle':
+                    isAnimating = false;
+                    break;
+                case 'StateRotating':
+                    rotateSlices(targetAngle);
+                    isAnimating = true;
+                    break;
+                case 'StateSeparating':
+                    isAnimating = true;
+                    break;
+                case 'StateSeparated':
+                    isAnimating = false;
+                    break;
+                case 'StateJoining':
+                    isAnimating = true;
+                    break;
             }
         };
 
@@ -85,6 +108,7 @@
             if (destAngle < 0) destAngle += Math.PI * 2;
 
             rotateSlices(destAngle);
+            setState('StateRotating');
         }        
 
         var getAngleFromXY = function (x, y) {
@@ -94,5 +118,6 @@
         };
 
         createSlices(data);
+        setState('StateIdle');
     };
 })(window.PS = window.PS || {});
