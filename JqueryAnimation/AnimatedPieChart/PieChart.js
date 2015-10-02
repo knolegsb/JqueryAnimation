@@ -6,6 +6,7 @@
         var centerX = 150;
         var centerY = 150;
         var radius = 100;
+        var currentRotationAngle = 0;
 
         var createSlices = function (data) {
             slices = [];
@@ -39,6 +40,23 @@
             }
         };
 
+        var rotateSlices = function (destAngle) {
+            $({ a: currentRotationAngle }).animate({ a: destAngle },
+                {
+                    duration: 800,
+                    easing: 'easeInOutBack',
+                    step: function (now, fx) {
+                        for (var i = 0; i < slices.length; i++) {
+                            slices[i].canvas.css('transform', 'rotate(' + now + 'rad)');
+                            slices[i].canvas.data('rotate', now);
+                        }
+                    },
+                    complete: function () {
+                        currentRotationAngle = destAngle;
+                    }
+                });
+        };
+
         var handlePieClick = function (x, y) {
             var a = getAngleFromXY(x, y);
             if (a < 0)
@@ -60,8 +78,14 @@
                     first -= Math.PI * 2;
             }
 
-            alert('selected: ' + slice.title);
-        }
+            //alert('selected: ' + slice.title);
+
+            var tAngle = 1.5 * Math.PI - (last - first) / 2.0;
+            var destAngle = tAngle - first;
+            if (destAngle < 0) destAngle += Math.PI * 2;
+
+            rotateSlices(destAngle);
+        }        
 
         var getAngleFromXY = function (x, y) {
             var deltaY = y - centerY;
