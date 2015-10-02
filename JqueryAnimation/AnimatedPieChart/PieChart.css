@@ -1,0 +1,13 @@
+﻿#pieChart{
+    position: relative;
+    margin: 50px;
+    border: 1px solid lightgray;
+    width: 300px;
+    height: 500px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.pieSlice{
+    position: absolute;
+    top: 200px;
+}
