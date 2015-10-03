@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="PieChart.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script src="../Scripts/jquery.easing.1.3.js"></script>
+    <script src="PieChart.js"></script>
+</head>
+<body>
+
+    <div id="pieChart"></div>
+
+    <script>
+        $(function () {
+            var data = [
+                {
+                    'title': 'iOS',
+                    'pct': '20',
+                    'color': '#b070b0'
+                },
+                {
+                    'title': 'Android',
+                    'pct': '67',
+                    'color': '#9070b0'
+                },
+                {
+                    'title': 'Others',
+                    'pct': '13',
+                    'color': '#a0a0d0'
+                }
+            ];
+
+            var pc = new PS.PieChart('pieChart', 'Smartphone Market Share', data);
+        });
+    </script>
+</body>
+</html>
