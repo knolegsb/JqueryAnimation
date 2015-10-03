@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="SpriteEngine.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script src="SpriteEngine.js"></script>
+</head>
+<body>
+    <div id="gameSurface"></div>
+    <!--<img src="Images/pinwheel.png" />-->
+    <script>
+        $(function () {
+            var surface = new PS.GameSurface('gameSurface');
+            var s = new PS.Sprite('./Images/pinwheel.png');
+            surface.addSprite(s);
+
+            s.xSpeed = 100;
+
+            surface.start();
+        });
+    </script>
+</body>
+</html>
