@@ -10,8 +10,10 @@
         this.update = function (time) {
             this.x += this.xSpeed * time;
             this.y += this.ySpeed * time;
-            this.image.css('left', this.x);
-            this.image.css('top', this.y);
+            this.image[0].style.left = this.x + 'px';
+            this.image[0].style.top = this.y + 'px';
+            //this.image.css('left', this.x);
+            //this.image.css('top', this.y);
         };
     };
 
