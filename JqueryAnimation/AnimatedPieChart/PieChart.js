@@ -8,6 +8,26 @@
         var radius = 100;
         var currentRotationAngle = 0;
         var targetAngle;
+        var animationState;
+        var selectedSlice;
+        var nextSelectedSlice;
+        var nextTargetAngle;
+        var isAnimating = false;
+
+        var heading = $('<div>' +
+                        '   <h3>' + title + '</h3>' +
+                        '   <h4></h4>' +
+                        '</div>');
+        pieChart.append(heading);
+
+        var percentSpan = $('<span class="percentSpan"></span>');
+        pieChart.append(percentSpan);
+        percentSpan.css({
+            'left': centerX - 32,
+            'top': centerY - 25,
+            'z-index': 1000,
+            'opacity': 0
+        });
 
         var createSlices = function (data) {
             slices = [];
@@ -19,6 +39,7 @@
                 pieChart.append(slice.canvas);
 
                 slice.canvas.click(function (event) {
+                    if (isAnimating) return;
                     handlePieClick(event.offsetX, event.offsetY);
                 });
 
@@ -52,12 +73,19 @@
                     isAnimating = true;
                     break;
                 case 'StateSeparating':
+                    separateSlice();
                     isAnimating = true;
+                    percentSpan.text(selectedSlice.pct + '%');
+                    heading.find('h4').text(selectedSlice.title);
                     break;
                 case 'StateSeparated':
                     isAnimating = false;
+                    percentSpan.animate({ 'opacity': 1 }, 300);
                     break;
                 case 'StateJoining':
+                    joinSlice();
+                    percentSpan.animate({ 'opacity': 0 }, 300);
+                    heading.find('h4').text('');
                     isAnimating = true;
                     break;
             }
@@ -76,6 +104,51 @@
                     },
                     complete: function () {
                         currentRotationAngle = destAngle;
+                        setState('StateSeparating');
+                    }
+                });
+        };
+
+        var separateSlice = function () {
+            selectedSlice.canvas.css('textIndent', 1);
+            selectedSlice.canvas.animate({ 'top': 100, 'textIndent': 1.5 },
+                {
+                    duration: 1000,
+                    easing: 'easeOutElastic',
+                    step: function (now, fx) {
+                        if (fx.prop === 'textIndent') {
+                            selectedSlice.canvas.css('transform', 'rotate(' + selectedSlice.canvas.data('rotate') + 'rad)scale(' + now + ')');
+                        }
+                    },
+                    complete: function () {
+                        setState('StateSeparated');
+                    }
+                });
+        };
+
+        var joinSlice = function () {
+            selectedSlice.canvas.css('textIndent', 1.5);
+            selectedSlice.canvas.animate({ 'top': 200, 'textIndent': 1 },
+                {
+                    duration: 500,
+                    easing: 'easeOutBounce',
+                    step: function (now, fx) {
+                        if (fx.prop === 'textIndent') {
+                            selectedSlice.canvas.css('transform', 'rotate(' + selectedSlice.canvas.data('rotate') + 'rad) scale(' + now + ')');
+                        }
+                    },
+                    complete: function () {
+                        if (nextSelectedSlice == null) {
+                            setState('StateIdle');
+                            selectedSlice = null;
+                        }
+                        else {
+                            selectedSlice = nextSelectedSlice;
+                            targetAngle = nextTargetAngle;
+                            nextSelectedSlice = null;
+
+                            setState('StateRotating');
+                        }
                     }
                 });
         };
@@ -101,14 +174,30 @@
                     first -= Math.PI * 2;
             }
 
+            if (slice == selectedSlice) {
+                nextSelectedSlice = null;
+                setState('StateJoining');
+                return;
+            }
+
             //alert('selected: ' + slice.title);
 
             var tAngle = 1.5 * Math.PI - (last - first) / 2.0;
             var destAngle = tAngle - first;
             if (destAngle < 0) destAngle += Math.PI * 2;
 
-            rotateSlices(destAngle);
-            setState('StateRotating');
+            if (animationState == 'StateSeparated') {
+                nextSelectedSlice = slice;
+                nextTargetAngle = destAngle;
+                setState('StateJoining');
+            }
+            else {
+                selectedSlice = slice;
+                targetAngle = destAngle;
+                setState('StateRotating');
+            }
+            //rotateSlices(destAngle);
+            //setState('StateRotating');
         }        
 
         var getAngleFromXY = function (x, y) {

@@ -11,3 +11,20 @@
     position: absolute;
     top: 200px;
 }
+
+#pieChart h3 {
+    width: 100%;
+    text-align: center;
+    color: darkblue;
+}
+
+#pieChart h4 {
+    text-align: center;
+    color: darkblue;
+}
+
+.percentSpan{
+    position: absolute;
+    font-size: 32px;
+    color: white;
+}
