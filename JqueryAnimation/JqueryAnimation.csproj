@@ -156,6 +156,10 @@
     <Content Include="ShowHide\ChainingAnimation.html" />
     <Content Include="ShowHide\HtmlPage1.html" />
     <Content Include="ShowHide\SlideMethods.html" />
+    <Content Include="SpriteEngine\Images\pinwheel.png" />
+    <Content Include="SpriteEngine\SpriteEngine.css" />
+    <Content Include="SpriteEngine\SpriteEngine.html" />
+    <Content Include="SpriteEngine\SpriteEngine.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
   </ItemGroup>

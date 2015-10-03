@@ -1,0 +1,16 @@
+﻿body {
+}
+
+#gameSurface{
+    margin: 50px;
+    position: relative;
+    border: 2px solid #ddd;
+    width: 480px;
+    height: 320px;
+    overflow: hidden;
+}
+
+.sprite{
+    position: absolute;
+    width: 50px;
+}
